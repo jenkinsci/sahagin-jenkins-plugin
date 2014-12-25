@@ -25,7 +25,7 @@ public class SahaginReportAction implements BuildBadgeAction {
     @Override
     public String getIconFileName() {
         // TODO this is provisional, and is not transparent image
-        return "/plugin/sahagin-jenkins-plugin/provisional.png";
+        return "/plugin/sahagin/provisional.png";
     }
 
     @Override

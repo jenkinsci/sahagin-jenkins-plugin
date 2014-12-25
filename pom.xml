@@ -6,11 +6,11 @@
     <version>1.480</version>
   </parent>
 
-  <groupId>org.sahagin</groupId>
-  <artifactId>sahagin-jenkins-plugin</artifactId>
-  <version>0.1</version>
+  <artifactId>sahagin</artifactId>
+  <version>0.2.3-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <name>Sahagin Plugin</name>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/Sahagin+Plugin</url>
 
   <licenses>
     <license>
@@ -18,7 +18,19 @@
       <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
     </license>
   </licenses>
-
+  <scm>
+    <connection>scm:git:ssh://github.com/jenkinsci/sahagin-plugin.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/sahagin-plugin.git</developerConnection>
+    <url>https://github.com/jenkinsci/sahagin-plugin.git</url>
+  </scm>
+  <developers>
+    <developer>
+      <name>Nozomi Ito</name>
+      <email>nozomi.ito@trident-qa.com</email>
+      <organization>TRIDENT Inc.</organization>
+      <organizationUrl>http://www.trident-qa.com</organizationUrl>
+    </developer>
+  </developers>
   <build>
     <plugins>
       <plugin>
@@ -44,7 +56,7 @@
     <dependency>
       <groupId>org.sahagin</groupId>
       <artifactId>sahagin</artifactId>
-      <version>0.1</version>
+      <version>0.2.3-SNAPSHOT</version>
     </dependency>
       
     <!-- TODO poor logic to avoid dependency error about xml-apis and htmlunit.. -->

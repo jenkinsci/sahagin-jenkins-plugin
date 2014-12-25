@@ -37,7 +37,7 @@ public class SahaginTestAction extends TestAction {
 
     public String getReportLinkIconFileName() {
         // TODO this is provisional, and is not transparent image
-        return "/plugin/sahagin-jenkins-plugin/provisional.png";
+        return "/plugin/sahagin/provisional.png";
     }
 
     public String getQualifiedClassName() {
