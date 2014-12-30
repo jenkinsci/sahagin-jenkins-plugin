@@ -7,7 +7,7 @@
   </parent>
 
   <artifactId>sahagin</artifactId>
-  <version>0.2.4-SNAPSHOT</version>
+  <version>0.3-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <name>Sahagin Plugin</name>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Sahagin+Plugin</url>
@@ -35,11 +35,6 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.1</version>
-      </plugin>
-      <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
         <configuration>
@@ -62,7 +57,7 @@
     <dependency>
       <groupId>org.sahagin</groupId>
       <artifactId>sahagin</artifactId>
-      <version>0.2.3</version>
+      <version>0.3-SNAPSHOT</version>
     </dependency>
       
     <!-- TODO poor logic to avoid dependency error about xml-apis and htmlunit.. -->
