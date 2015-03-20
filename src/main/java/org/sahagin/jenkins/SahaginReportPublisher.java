@@ -16,9 +16,6 @@ import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
 
-import org.sahagin.main.SahaginMain;
-import org.sahagin.share.Config;
-
 public class SahaginReportPublisher extends Recorder {
     private static final String buildReportDirName = "sahagin-report";
     private String sahaginYamlPath;
@@ -50,15 +47,15 @@ public class SahaginReportPublisher extends Recorder {
     public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener) {
         PrintStream logger = listener.getLogger();
         FilePath configFilePath = new FilePath(build.getWorkspace(), sahaginYamlPath);
+        
         try {
-            // generate report
-            // TODO show more user-friendly error
-            // when report-input files have not been generated.
-            SahaginMain.main(new String[]{"report", configFilePath.getRemote()});
-
+            logger.println("invoke SahaginMain with config: " + configFilePath.getRemote());
+            SahaginMainExecutor exec = new SahaginMainExecutor(configFilePath.getRemote());
+            // execute SahaginMain by SahaginMainExecutor 
+            // on the machine on which the config file is located
+            // TODO show more user-friendly error when report-input files have not been generated.
+            FilePath reportOutputDir = configFilePath.act(exec);
             // move report to the directory for each build
-            Config config = Config.generateFromYamlConfig(new File(configFilePath.getRemote()));
-            FilePath reportOutputDir = new FilePath(config.getRootBaseReportOutputDir());
             FilePath copyDest = new FilePath(new File(build.getRootDir(), buildReportDirName));
             // TODO should use rename instead of copy for efficiency
             reportOutputDir.copyRecursiveTo(copyDest);
