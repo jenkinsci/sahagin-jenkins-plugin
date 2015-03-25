@@ -7,7 +7,7 @@
   </parent>
 
   <artifactId>sahagin</artifactId>
-  <version>0.6.1-SNAPSHOT</version>
+  <version>0.7</version>
   <packaging>hpi</packaging>
   <name>Sahagin Plugin</name>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Sahagin+Plugin</url>
@@ -57,7 +57,7 @@
     <dependency>
       <groupId>org.sahagin</groupId>
       <artifactId>sahagin</artifactId>
-      <version>0.6</version>
+      <version>0.7</version>
     </dependency>
       
     <!-- TODO poor logic to avoid dependency error about xml-apis and htmlunit.. -->
