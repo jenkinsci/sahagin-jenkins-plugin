@@ -1,5 +1,7 @@
 package org.sahagin.jenkins;
 
+import java.util.regex.Pattern;
+
 import hudson.model.AbstractBuild;
 import hudson.tasks.junit.TestAction;
 
@@ -9,6 +11,7 @@ public class SahaginTestAction extends TestAction {
     private AbstractBuild<?, ?> build;
     private String qualifiedClassName;
     private String testName;
+    private static Pattern testNGTestNamePattern = Pattern.compile(".* on .*\\(.*\\)");
 
     public SahaginTestAction(AbstractBuild<?, ?> build, String qualifiedClassName, String testName) {
         this.build = build;
@@ -44,8 +47,12 @@ public class SahaginTestAction extends TestAction {
         return qualifiedClassName;
     }
 
-    public String getTestName() {
-        return testName;
+    public String getTestHtmlFileName() {
+        if (testNGTestNamePattern.matcher(testName).matches()) {
+            return testName.substring(0, testName.indexOf(" "));
+        } else {
+            return testName;
+        }
     }
 
 }
