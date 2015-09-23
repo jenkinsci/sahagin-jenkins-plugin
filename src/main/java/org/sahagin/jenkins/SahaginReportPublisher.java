@@ -1,20 +1,20 @@
 package org.sahagin.jenkins;
 
-import java.io.File;
-import java.io.PrintStream;
-
-import org.kohsuke.stapler.DataBoundConstructor;
-
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.AbstractProject;
 import hudson.model.BuildListener;
 import hudson.model.AbstractBuild;
+import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
+
+import java.io.File;
+import java.io.PrintStream;
+
+import org.kohsuke.stapler.DataBoundConstructor;
 
 public class SahaginReportPublisher extends Recorder {
     private static final String buildReportDirName = "sahagin-report";
@@ -58,6 +58,7 @@ public class SahaginReportPublisher extends Recorder {
             // move report to the directory for each build
             FilePath copyDest = new FilePath(new File(build.getRootDir(), buildReportDirName));
             // TODO should use rename instead of copy for efficiency
+            logger.println("copy from remote dir " + reportOutputDir.getRemote() + " to " + copyDest.getRemote());
             reportOutputDir.copyRecursiveTo(copyDest);
             reportOutputDir.deleteRecursive();
 

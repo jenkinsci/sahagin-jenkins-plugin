@@ -25,9 +25,20 @@ public class SahaginMainExecutor implements FilePath.FileCallable<FilePath> {
         this.configAbsPath = configAbsPath;
     }
     
+    // TODO temporal class. should define generateFromYamlConfig method o
+    // on org.sahagin.share.Config and use it
+    private class TempConfig extends Config {
+        
+        private TempConfig(File rootDir) {
+            super();
+            setRootDir(rootDir);
+        }
+        
+    };
+    
     @Override
     public FilePath invoke(File file, VirtualChannel channel) 
-            throws IOException, InterruptedException {
+            throws IOException, InterruptedException {        
         try {
             SahaginMain.main(new String[]{"report", configAbsPath});
         } catch (YamlConvertException e) {
@@ -37,18 +48,16 @@ public class SahaginMainExecutor implements FilePath.FileCallable<FilePath> {
         } catch (IllegalTestScriptException e) {
             throw new IOException(e);
         }
-        // TODO temporal logic. should define generateFromYamlConfig method on org.sahagin.share.Config
-        // and use it
         try {
             Map<String, Object> configYamlObj = YamlUtils.load(file);
-            Config config = new Config() {};
+            Config tempConfig = new TempConfig(file.getParentFile());
             try {
-                config.fromYamlObject(configYamlObj);
+                tempConfig.fromYamlObject(configYamlObj);
             } catch (YamlConvertException e) {
                 throw new YamlConvertException(String.format(
                         INVALID_CONFIG_YAML, file.getAbsolutePath(), e.getLocalizedMessage()), e);
             }                    
-            FilePath reportOutputDir = new FilePath(config.getRootBaseReportOutputDir());
+            FilePath reportOutputDir = new FilePath(tempConfig.getRootBaseReportOutputDir());
             return reportOutputDir;
         } catch (YamlConvertException e) {
             throw new IOException(e);
