@@ -66,7 +66,7 @@
     <dependency>
       <groupId>org.sahagin</groupId>
       <artifactId>sahagin</artifactId>
-      <version>0.8.1</version>
+      <version>0.8.2-SNAPSHOT</version>
     </dependency>
       
     <!-- TODO poor logic to avoid dependency error about xml-apis, commons-lang3, and htmlunit.. -->
