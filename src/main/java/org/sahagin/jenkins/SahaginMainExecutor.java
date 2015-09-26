@@ -6,14 +6,12 @@ import hudson.remoting.VirtualChannel;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 import org.sahagin.main.SahaginMain;
 import org.sahagin.share.Config;
 import org.sahagin.share.IllegalDataStructureException;
 import org.sahagin.share.IllegalTestScriptException;
 import org.sahagin.share.yaml.YamlConvertException;
-import org.sahagin.share.yaml.YamlUtils;
 
 public class SahaginMainExecutor implements FilePath.FileCallable<FilePath> {
     // TODO constant for temporal logic
@@ -24,18 +22,7 @@ public class SahaginMainExecutor implements FilePath.FileCallable<FilePath> {
     public SahaginMainExecutor(String configAbsPath) {
         this.configAbsPath = configAbsPath;
     }
-    
-    // TODO temporal class. should define generateFromYamlConfig method o
-    // on org.sahagin.share.Config and use it
-    private class TempConfig extends Config {
         
-        private TempConfig(File rootDir) {
-            super();
-            setRootDir(rootDir);
-        }
-        
-    };
-    
     @Override
     public FilePath invoke(File file, VirtualChannel channel) 
             throws IOException, InterruptedException {        
@@ -49,15 +36,14 @@ public class SahaginMainExecutor implements FilePath.FileCallable<FilePath> {
             throw new IOException(e);
         }
         try {
-            Map<String, Object> configYamlObj = YamlUtils.load(file);
-            Config tempConfig = new TempConfig(file.getParentFile());
+            Config config;
             try {
-                tempConfig.fromYamlObject(configYamlObj);
+                config = Config.generateFromYamlConfig(file);
             } catch (YamlConvertException e) {
                 throw new YamlConvertException(String.format(
                         INVALID_CONFIG_YAML, file.getAbsolutePath(), e.getLocalizedMessage()), e);
             }                    
-            FilePath reportOutputDir = new FilePath(tempConfig.getRootBaseReportOutputDir());
+            FilePath reportOutputDir = new FilePath(config.getRootBaseReportOutputDir());
             return reportOutputDir;
         } catch (YamlConvertException e) {
             throw new IOException(e);
