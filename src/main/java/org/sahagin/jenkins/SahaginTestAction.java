@@ -15,7 +15,7 @@ public class SahaginTestAction extends TestAction {
     private AbstractBuild<?, ?> build;
     private String qualifiedClassName;
     private String testName;
-    private static Pattern testNGTestNamePattern = Pattern.compile(".* on .*\\(.*\\)");
+    private static Pattern TEST_NG_TEST_NAME_PATTERN = Pattern.compile(".* on .*\\(.*\\)");
 
     public SahaginTestAction(AbstractBuild<?, ?> build, String qualifiedClassName, String testName) {
         this.build = build;
@@ -57,7 +57,7 @@ public class SahaginTestAction extends TestAction {
     }
 
     public String getTestHtmlFileName() {
-        if (testNGTestNamePattern.matcher(testName).matches()) {
+        if (TEST_NG_TEST_NAME_PATTERN.matcher(testName).matches()) {
             return testName.substring(0, testName.indexOf(" "));
         } else {
             return testName;
