@@ -1,9 +1,13 @@
 package org.sahagin.jenkins;
 
-import java.util.regex.Pattern;
-
 import hudson.model.AbstractBuild;
 import hudson.tasks.junit.TestAction;
+
+import java.nio.charset.Charset;
+import java.util.regex.Pattern;
+
+import org.sahagin.share.CommonUtils;
+
 
 // This action adds link to Sahagin each test report
 // to JUnit test report each result page.
@@ -46,6 +50,11 @@ public class SahaginTestAction extends TestAction {
     public String getQualifiedClassName() {
         return qualifiedClassName;
     }
+    
+    public String getEncodedQualifiedClassName() {
+        return CommonUtils.encodeToSafeAsciiFileNameString(
+                getQualifiedClassName(), Charset.forName("UTF-8"));
+    }
 
     public String getTestHtmlFileName() {
         if (testNGTestNamePattern.matcher(testName).matches()) {
@@ -54,5 +63,11 @@ public class SahaginTestAction extends TestAction {
             return testName;
         }
     }
+    
+    public String getEncodedTestHtmlFileName() {
+        return CommonUtils.encodeToSafeAsciiFileNameString(
+                getTestHtmlFileName(), Charset.forName("UTF-8"));
+    }
+
 
 }
