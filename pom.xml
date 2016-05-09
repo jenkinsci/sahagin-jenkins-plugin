@@ -7,11 +7,10 @@
   </parent>
 
   <artifactId>sahagin</artifactId>
-  <version>0.8.3-SNAPSHOT</version>
+  <version>0.9-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <name>Sahagin Plugin</name>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Sahagin+Plugin</url>
-
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -61,36 +60,11 @@
       </plugin>
     </plugins>
   </build>
-        
   <dependencies>
     <dependency>
       <groupId>org.sahagin</groupId>
       <artifactId>sahagin</artifactId>
-      <version>0.8.3-SNAPSHOT</version>
-    </dependency>
-      
-    <!-- TODO poor logic to avoid dependency error about xml-apis, commons-lang3, and htmlunit.. -->
-    <dependency>
-      <groupId>xml-apis</groupId>
-	  <artifactId>xml-apis</artifactId>
-	  <version>1.4.01</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.4</version>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>2.48.2</version>
-      <exclusions>
-        <exclusion>
-          <groupId>net.sourceforge.htmlunit</groupId>
-          <artifactId>htmlunit</artifactId>
-        </exclusion>      
-      </exclusions>
+      <version>0.9-SNAPSHOT</version>
     </dependency>
   </dependencies>
-    
 </project>
