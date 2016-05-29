@@ -27,11 +27,7 @@ public class SahaginMainExecutor implements FilePath.FileCallable<FilePath> {
             throws IOException, InterruptedException {
         try {
             SahaginMain.main(new String[]{"report", configAbsPath});
-        } catch (YamlConvertException e) {
-            throw new IOException(e);
-        } catch (IllegalDataStructureException e) {
-            throw new IOException(e);
-        } catch (IllegalTestScriptException e) {
+        } catch (YamlConvertException | IllegalDataStructureException | IllegalTestScriptException e) {
             throw new IOException(e);
         }
         try {
