@@ -6,8 +6,8 @@ import org.kohsuke.stapler.DataBoundConstructor;
 
 import hudson.Extension;
 import hudson.Launcher;
-import hudson.model.BuildListener;
 import hudson.model.AbstractBuild;
+import hudson.model.BuildListener;
 import hudson.model.Descriptor;
 import hudson.tasks.junit.TestDataPublisher;
 import hudson.tasks.junit.TestResult;
@@ -34,5 +34,4 @@ public class SahaginTestDataPublishser extends TestDataPublisher {
             return "Add Sahagin test report link to each test result";
         }
     }
-
 }

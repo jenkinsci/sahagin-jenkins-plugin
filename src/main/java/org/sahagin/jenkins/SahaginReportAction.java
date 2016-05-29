@@ -7,8 +7,8 @@ import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 
 import hudson.FilePath;
-import hudson.model.BuildBadgeAction;
 import hudson.model.AbstractBuild;
+import hudson.model.BuildBadgeAction;
 import hudson.model.DirectoryBrowserSupport;
 
 // Since this action implements BuildBadge interface,
@@ -47,5 +47,4 @@ public class SahaginReportAction implements BuildBadgeAction {
         FilePath buildReportDir = new FilePath(new File(build.getRootDir(), buildReportDirName));
         return new DirectoryBrowserSupport(this, buildReportDir, getDisplayName(), null, false);
     }
-
 }

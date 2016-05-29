@@ -1,20 +1,20 @@
 package org.sahagin.jenkins;
 
-import hudson.Extension;
-import hudson.FilePath;
-import hudson.Launcher;
-import hudson.model.BuildListener;
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
-import hudson.tasks.BuildStepDescriptor;
-import hudson.tasks.BuildStepMonitor;
-import hudson.tasks.Publisher;
-import hudson.tasks.Recorder;
-
 import java.io.File;
 import java.io.PrintStream;
 
 import org.kohsuke.stapler.DataBoundConstructor;
+
+import hudson.Extension;
+import hudson.FilePath;
+import hudson.Launcher;
+import hudson.model.AbstractBuild;
+import hudson.model.AbstractProject;
+import hudson.model.BuildListener;
+import hudson.tasks.BuildStepDescriptor;
+import hudson.tasks.BuildStepMonitor;
+import hudson.tasks.Publisher;
+import hudson.tasks.Recorder;
 
 public class SahaginReportPublisher extends Recorder {
     private static final String buildReportDirName = "sahagin-report";
@@ -88,7 +88,5 @@ public class SahaginReportPublisher extends Recorder {
         public String getDisplayName() {
             return "Publish Sahagin HTML report";
         }
-
     }
-
 }

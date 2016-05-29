@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.List;
 
 import hudson.model.AbstractBuild;
+import hudson.tasks.junit.CaseResult;
 import hudson.tasks.junit.TestAction;
 import hudson.tasks.junit.TestObject;
 import hudson.tasks.junit.TestResultAction.Data;
-import hudson.tasks.junit.CaseResult;
 
 @SuppressWarnings("deprecation")
 public class SahaginTestData extends Data {
@@ -30,5 +30,4 @@ public class SahaginTestData extends Data {
         String testName = caseResult.getName();
         return Collections.singletonList(new SahaginTestAction(build, qualifiedClassName, testName));
     }
-
 }
