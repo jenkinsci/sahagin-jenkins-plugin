@@ -55,12 +55,10 @@ public class SahaginReportPublisher extends Recorder {
             // on the machine on which the config file is located
             // TODO show more user-friendly error when report-input files have not been generated.
             FilePath reportOutputDir = configFilePath.act(exec);
-            // move report to the directory for each build
+            // copy report to the directory for each build
             FilePath copyDest = new FilePath(new File(build.getRootDir(), buildReportDirName));
-            // TODO should use rename instead of copy for efficiency
             logger.println("copy from remote dir " + reportOutputDir.getRemote() + " to " + copyDest.getRemote());
             reportOutputDir.copyRecursiveTo(copyDest);
-            reportOutputDir.deleteRecursive();
 
             // add link from build result to sahagin report
             SahaginReportAction action = new SahaginReportAction(build);
