@@ -1,1 +1,2 @@
+<?jelly escape-by-default='true'?>
 <div>This plugin generates Sahagin HTML report from Sahagin test output data and attaches it to build.</div>

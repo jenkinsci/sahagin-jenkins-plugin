@@ -3,6 +3,7 @@ package org.sahagin.jenkins;
 import java.io.File;
 import java.io.IOException;
 
+import org.jenkinsci.remoting.RoleChecker;
 import org.sahagin.main.SahaginMain;
 import org.sahagin.share.Config;
 import org.sahagin.share.IllegalDataStructureException;
@@ -43,5 +44,10 @@ public class SahaginMainExecutor implements FilePath.FileCallable<FilePath> {
         } catch (YamlConvertException e) {
             throw new IOException(e);
         }
+    }
+
+    @Override
+    public void checkRoles(RoleChecker arg0) throws SecurityException {
+        // maybe no need to check anything
     }
 }
